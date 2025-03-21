@@ -3,7 +3,6 @@ USE pet_db;
 
 
 
--- Tabela Animal
 CREATE TABLE Animal (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
@@ -14,13 +13,13 @@ CREATE TABLE Animal (
     cor VARCHAR(50),
     pelagem VARCHAR(50),
     temperamento VARCHAR(255),
-    fotos VARCHAR(255), -- Ou BLOB para armazenar as imagens diretamente
+    fotos VARCHAR(255), 
     historico_medico TEXT,
-    tutor_id INT, -- Chave estrangeira para Tutor
+    tutor_id INT,
     FOREIGN KEY (tutor_id) REFERENCES Tutor(id)
 );
 
--- Tabela Tutor
+
 CREATE TABLE Tutor (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
@@ -29,13 +28,13 @@ CREATE TABLE Tutor (
     endereco VARCHAR(255)
 );
 
--- Tabela Vacina
+
 CREATE TABLE Vacina (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255)
 );
 
--- Tabela de relacionamento Animal_Vacina
+
 CREATE TABLE Animal_Vacina (
     animal_id INT,
     vacina_id INT,
