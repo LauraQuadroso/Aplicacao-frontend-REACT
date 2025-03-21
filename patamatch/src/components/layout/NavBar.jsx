@@ -19,7 +19,7 @@ const Navbar = () => {
           <li><Link to="/" className={style.itens}>Quem Somos</Link></li>
           <li><Link to="/adote" className={style.itens}>Adote</Link></li>
           <li><Link to="/apadrinhe" className={style.itens}>Apadrinhe</Link></li>
-          <li><Link to="/favoritos" className={style.itens}>Favoritos</Link></li>
+          <li><Link to="/cadastrar" className={style.itens}>Cadastrar Pet</Link></li>
         </ul>
 
         

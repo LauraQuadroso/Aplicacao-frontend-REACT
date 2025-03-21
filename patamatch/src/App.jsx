@@ -1,6 +1,3 @@
-
-//roteamento
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Container from "./components/layout/Container";
@@ -10,6 +7,7 @@ import Home from './components/pages/Home';
 
 // Importação do layout
 import Navbar from './components/layout/NavBar';
+import CreatePet from "./components/pages/CreatePet";
 
 function App() {
     return (
@@ -18,6 +16,7 @@ function App() {
             <Container>
                 <Routes>
                     <Route path='/' element={<Home />} />
+                    <Route path='/cadastrar' element={<CreatePet />} /> {/* Corrigido aqui */}
                 </Routes>
             </Container>
         </BrowserRouter>
