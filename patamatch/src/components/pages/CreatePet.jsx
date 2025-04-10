@@ -1,97 +1,108 @@
 import React, { useState } from 'react';
 import Input from '../form/AnimalInput';
 import styles from './CreatePet.module.css';
+import api from '../../services/api';
 
 const CreatePet = () => {
     const [animal, setAnimal] = useState({
         nome: '',
         fotos: [],
-        especie: '',
-        raca: '',
+        descricao: '',
         sexo: '',
         idade: '',
         porte: '',
         cor: '',
         pelagem: '',
-        descricao: '',
         temperamento: '',
-        vacinacao: [],
-        castrado: false,
-        necessidadesEspeciais: '',
-        telefone: '',
-        email: '',
-        endereco: '',
-        numeroMicrochip: '',
         historicoMedico: '',
     });
 
+    const [tutor, setTutor] = useState({
+        nome: '',
+        telefone: '',
+        email: '',
+        endereco: ''
+    });
+
     const handleInputChange = (event) => {
-        const { name, value, type, checked } = event.target;
-        setAnimal({
-            ...animal,
-            [name]: type === 'checkbox' ? checked : value,
-        });
+        const { name, value } = event.target;
+        if (['nome', 'telefone', 'email', 'endereco'].includes(name)) {
+            setTutor({
+                ...tutor,
+                [name]: value,
+            });
+        } else {
+            setAnimal({
+                ...animal,
+                [name]: value,
+            });
+        }
     };
 
     const handleFotoChange = (event) => {
-        const files = event.target.files;
+        const files = Array.from(event.target.files);
         setAnimal({
             ...animal,
-            fotos: files,
+            fotos: files.map(file => file.name), // Apenas nomes por enquanto
         });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(animal);
-        setAnimal({
-            nome: '',
-            fotos: [],
-            especie: '',
-            raca: '',
-            sexo: '',
-            idade: '',
-            porte: '',
-            cor: '',
-            pelagem: '',
-            descricao: '',
-            temperamento: '',
-            vacinacao: [],
-            castrado: false,
-            necessidadesEspeciais: '',
-            nomeTutor: '',
-            telefone: '',
-            email: '',
-            endereco: '',
-            microchip: false,
-            numeroMicrochip: '',
-            historicoMedico: '',
-        });
+
+        try {
+            const response = await api.post('/animal', {
+                ...animal,
+                tutor: { ...tutor }
+            });
+
+            console.log("Animal cadastrado:", response.data);
+
+            // Limpa os campos
+            setAnimal({
+                nome: '',
+                fotos: [],
+                descricao: '',
+                sexo: '',
+                idade: '',
+                porte: '',
+                cor: '',
+                pelagem: '',
+                temperamento: '',
+                historicoMedico: '',
+            });
+
+            setTutor({
+                nome: '',
+                telefone: '',
+                email: '',
+                endereco: ''
+            });
+
+        } catch (error) {
+            console.error("Erro ao cadastrar animal:", error);
+        }
     };
 
     const handleCancel = () => {
         setAnimal({
             nome: '',
             fotos: [],
-            especie: '',
-            raca: '',
+            descricao: '',
             sexo: '',
             idade: '',
             porte: '',
             cor: '',
             pelagem: '',
-            descricao: '',
             temperamento: '',
-            vacinacao: [],
-            castrado: false,
-            necessidadesEspeciais: '',
-            nomeTutor: '',
+            historicoMedico: '',
+        });
+
+        setTutor({
+            nome: '',
             telefone: '',
             email: '',
-            endereco: '',
-            microchip: false,
-            numeroMicrochip: '',
-            historicoMedico: '',
+            endereco: ''
         });
     };
 
@@ -111,9 +122,14 @@ const CreatePet = () => {
                 <Input type="text" name="cor" id="cor" placeholder="Cor do animal" value={animal.cor} handlerChange={handleInputChange} />
                 <Input type="text" name="pelagem" id="pelagem" placeholder="Pelagem do animal" value={animal.pelagem} handlerChange={handleInputChange} />
                 <Input type="text" name="temperamento" id="temperamento" placeholder="Temperamento do animal" value={animal.temperamento} handlerChange={handleInputChange} />
-                <Input type="text" name="telefone" id="telefone" placeholder="Telefone" value={animal.telefone} handlerChange={handleInputChange} />
-                <Input type="email" name="email" id="email" placeholder="Email" value={animal.email} handlerChange={handleInputChange} />
-                <Input type="text" name="endereco" id="endereco" placeholder="Endereço" value={animal.endereco} handlerChange={handleInputChange} />
+                <Input type="textarea" name="historicoMedico" id="historicoMedico" placeholder="Histórico médico" value={animal.historicoMedico} handlerChange={handleInputChange} />
+
+                <h2>Tutor</h2>
+                <Input type="text" name="nome" id="nomeTutor" placeholder="Nome do tutor" value={tutor.nome} handlerChange={handleInputChange} />
+                <Input type="text" name="telefone" id="telefone" placeholder="Telefone" value={tutor.telefone} handlerChange={handleInputChange} />
+                <Input type="email" name="email" id="email" placeholder="Email" value={tutor.email} handlerChange={handleInputChange} />
+                <Input type="text" name="endereco" id="endereco" placeholder="Endereço" value={tutor.endereco} handlerChange={handleInputChange} />
+
                 <button type="submit" className={styles.btnCadastrar}>Cadastrar</button>
                 <button type="button" className={styles.btnCancelar} onClick={handleCancel}>Cancelar</button>
             </form>
