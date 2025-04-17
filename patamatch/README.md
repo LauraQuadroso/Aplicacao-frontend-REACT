@@ -1,1 +1,0 @@
-Projeto patamatch, um site com o intuito de unir ONGS de resgate animal com futuros adotantes, onde eles podem encontrar um animal qe mais se adeque a sua personalidade e expectativas, selecionando animais pelo tamanho, idade, comportamento, especie, etc.
