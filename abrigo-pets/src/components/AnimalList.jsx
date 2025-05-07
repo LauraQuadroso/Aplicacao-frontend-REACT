@@ -1,32 +1,31 @@
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import styles from './AnimalList.module.css'
+
 function AnimalList() {
-    // Mock de dados até conectar com API
-    const animais = [
-      {
-        nome: 'Rex',
-        idade: '3',
-        especie: 'Cachorro',
-        porte: 'Médio',
-        vacinas: 'Raiva, V10',
-        comportamento: 'Brincalhão',
-        imagem: 'https://via.placeholder.com/100'
-      },
-      {
-        nome: 'Mimi',
-        idade: '2',
-        especie: 'Gato',
-        porte: 'Pequeno',
-        vacinas: 'Tríplice felina',
-        comportamento: 'Calma',
-        imagem: 'https://via.placeholder.com/100'
-      }
-    ]
-  
-    return (
-      <div>
+  const [animais, setAnimais] = useState([])
+  const [erro, setErro] = useState(null)
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/animais')
+      .then(response => {
+        setAnimais(response.data)
+      })
+      .catch(error => {
+        console.error('Erro ao buscar animais:', error)
+        setErro('Erro ao carregar os dados.')
+      })
+  }, [])
+
+  return (
+    <div>
+      <h2 className={styles.title}>Animais disponíveis para adoção</h2>
+      {erro && <p className={styles.error}>{erro}</p>}
+      <div className={styles.cardContainer}>
         {animais.map((animal, index) => (
-          <div key={index} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}>
-            <img src={animal.imagem} alt={animal.nome} width="100" />
-            <p><strong>Nome:</strong> {animal.nome}</p>
+          <div key={index} className={styles.card}>
+            {animal.imagem && <img src={animal.imagem} alt={animal.nome} className={styles.image} />}
+            <h3>{animal.nome}</h3>
             <p><strong>Idade:</strong> {animal.idade}</p>
             <p><strong>Espécie:</strong> {animal.especie}</p>
             <p><strong>Porte:</strong> {animal.porte}</p>
@@ -35,8 +34,8 @@ function AnimalList() {
           </div>
         ))}
       </div>
-    )
-  }
-  
-  export default AnimalList
-  
+    </div>
+  )
+}
+
+export default AnimalList
