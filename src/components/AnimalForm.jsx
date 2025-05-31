@@ -1,6 +1,6 @@
 // src/components/AnimalForm.jsx
 import React, { useState } from 'react';
-import styles from './AnimalForm.module.css'; // Importe o CSS Module
+import styles from './AnimalForm.module.css'; 
 
 function AnimalForm() {
     const [formData, setFormData] = useState({

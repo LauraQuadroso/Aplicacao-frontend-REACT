@@ -9,6 +9,8 @@ function AnimalDetails() {
     const [animal, setAnimal] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [deleting, setDeleting] = useState(false);
+    const [deleteError, setDeleteError] = useState(null);
 
     useEffect(() => {
         const fetchAnimalDetails = async () => {
@@ -28,7 +30,33 @@ function AnimalDetails() {
         };
 
         fetchAnimalDetails();
-    }, [id]); // O efeito roda novamente se o ID na URL mudar
+    }, [id]);
+
+    const handleEdit = () => {
+        navigate(`/animais/editar/${id}`);
+    };
+
+    const handleDelete = async () => {
+        const confirmDelete = window.confirm('Tem certeza que deseja excluir este animal? Esta ação não pode ser desfeita.');
+        if (!confirmDelete) return;
+
+        setDeleting(true);
+        setDeleteError(null);
+
+        try {
+            const response = await fetch(`http://localhost:3000/animais/${id}`, {
+                method: 'DELETE',
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao excluir o animal.');
+            }
+            // Após excluir, voltar para a lista
+            navigate('/');
+        } catch (err) {
+            setDeleteError(err.message);
+            setDeleting(false);
+        }
+    };
 
     if (loading) {
         return <div className={styles.loadingMessage}>Carregando detalhes do animal...</div>;
@@ -70,9 +98,25 @@ function AnimalDetails() {
                 <p><strong>Comportamento:</strong> {animal.comportamento || 'Não informado'}</p>
             </div>
 
-            {/* Você pode adicionar mais seções conforme o seu modelo de dados */}
-            {/* Por exemplo, um botão de "Adotar" se for um formulário de adoção */}
-            <button className={styles.adoptButton}>Adotar {animal.nome}</button>
+            {/* Botões Editar e Excluir */}
+            <div className={styles.actions}>
+                <button
+                    className={styles.adoptButton}
+                    onClick={handleEdit}
+                    disabled={deleting}
+                >
+                    Editar
+                </button>
+                <button 
+                    className={styles.adoptButton}
+                    onClick={handleDelete}
+                    disabled={deleting}
+                >
+                    {deleting ? 'Excluindo...' : 'Excluir'}
+                </button>
+            </div>
+
+            {deleteError && <p className={styles.errorMessage}>Erro ao excluir: {deleteError}</p>}
         </div>
     );
 }
