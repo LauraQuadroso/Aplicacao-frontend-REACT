@@ -1,0 +1,92 @@
+/* src/styles/AnimalForm.module.css ou src/components/AnimalForm.module.css */
+.formContainer {
+    padding: 30px;
+    max-width: 600px; /* Ajuste a largura conforme necessário */
+    margin: 40px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ff8c42; /* Borda laranja principal */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre os elementos do formulário */
+    font-family: 'Arial', sans-serif;
+}
+
+.formTitle {
+    text-align: center;
+    color: #4a148c; /* Roxo */
+    margin-bottom: 25px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #333;
+    width: 100%; /* Garante que o input ocupe a largura total */
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+.input:focus {
+    outline: none;
+    border-color: #ff8c42; /* Destaque da borda ao focar */
+    box-shadow: 0 0 8px rgba(255, 140, 66, 0.4);
+}
+
+.button {
+    background: linear-gradient(to right, #ff8c42, #ffa500); /* Gradiente laranja */
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(255, 140, 66, 0.3);
+}
+
+.button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.errorMessage {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .formContainer {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .formTitle {
+        font-size: 1.8em;
+    }
+
+    .button {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}

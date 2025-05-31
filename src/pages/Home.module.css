@@ -1,0 +1,181 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+  }
+  
+  .banner {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .bannerImg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .filtros {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: white;
+    margin-top: -30px;
+    padding: 20px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    position: relative;
+  }
+  
+  select {
+    padding: 10px;
+    border: 2px solid #ff7043;
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .botaoMatch {
+    background-color: #ff7043;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .botaoMatch:hover {
+    background-color: #e64a19;
+  }
+
+  /* src/pages/Home.module.css */
+
+/* ... (seus estilos existentes para Home) ... */
+
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaço entre os filtros e botões */
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap; /* Permite que os itens quebrem linha em telas menores */
+}
+
+.selectFilter,
+.botaoMatch,
+.botaoLimpar { /* <--- AQUI: Inclua botaoLimpar */
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #ddd; /* Borda padrão */
+}
+
+.selectFilter {
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #fff; 
+    color: #333;
+    appearance: none;
+   
+}
+
+.botaoMatch {
+    background: linear-gradient(to right, #ff8c42, #ffa500); /* Laranja vibrante */
+    color: white;
+    border: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(255, 140, 66, 0.3);
+}
+
+.botaoMatch:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.botaoLimpar {
+    background-color: #6c757d; /* Cinza */
+    color: white;
+    border: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+.botaoLimpar:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+}
+
+.sectionTitle {
+    text-align: center;
+    color: #4a148c; /* Roxo */
+    margin: 40px 0 20px 0;
+    font-size: 2.2em;
+    font-weight: bold;
+}
+
+.noMatchesMessage {
+    text-align: center;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffe0b2; /* Laranja claro */
+    border: 1px solid #ff8c42; /* Borda laranja */
+    border-radius: 8px;
+    max-width: 600px;
+    font-size: 1.1em;
+    color: #6a1b9a; /* Roxo mais escuro */
+}
+
+.noMatchesMessage p {
+    margin-bottom: 10px;
+}
+
+/* Estilos do banner */
+.banner {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.bannerImg {
+    width: 100%;
+    height: auto;
+    display: block; /* Remove espaço extra abaixo da imagem */
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorção */
+    min-height: 150px; /* Altura mínima para o banner */
+}
+
+
+/* ... (seus estilos existentes para .noMatchesMessage e responsividade) ... */
+
+@media (max-width: 768px) {
+    .filtros {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .selectFilter,
+    .botaoMatch,
+    .botaoLimpar {
+        width: 80%; /* Ocupa mais largura em telas menores */
+    }
+
+    .sectionTitle {
+        font-size: 1.8em;
+    }
+}

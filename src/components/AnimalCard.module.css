@@ -1,0 +1,82 @@
+.card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    overflow: hidden;
+    width: 200px; /* Largura fixa do card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #f0f0f0; /* Borda sutil */
+    /* Nova borda colorida inspirada na imagem */
+    border: 2px solid #ff8c42; /* Cor laranja da borda */
+}
+
+.imageContainer {
+    width: 100%;
+    height: 150px; /* Altura fixa da imagem */
+    overflow: hidden;
+    border-radius: 8px 8px 0 0; /* Arredonda apenas as bordas superiores */
+    background-color: #e0e0e0; /* Cor de fundo para caso a imagem demore a carregar */
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: 100%; /* Preenche a altura do container */
+    object-fit: cover; /* Recorta a imagem para cobrir o container */
+    object-position: center; /* Centraliza a imagem no container */
+}
+
+.infoContainer {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    background-color: white; /* Fundo branco para a seção de info */
+    border-bottom: 1px solid #ff8c42; /* Linha laranja abaixo do nome/idade */
+}
+
+.nameAge {
+    font-weight: bold;
+    color: #4a148c; /* Roxo mais escuro para o nome/idade */
+    font-size: 1.2em; /* Um pouco maior */
+    margin-bottom: 5px;
+}
+
+.detailsContainer { /* Novo container para os detalhes menores */
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 100%;
+    background-color: white; /* Fundo branco para a seção de detalhes */
+    color: #6a1b9a; /* Roxo mais claro para os detalhes */
+    font-size: 0.9em;
+}
+
+/* Remove a seção de ações e o botão de detalhes */
+.actions {
+    display: none; /* Ou você pode simplesmente remover o div das ações do HTML */
+}
+
+/* Novo estilo para o botão 'Adote' na parte inferior */
+.bottomButton {
+    background: linear-gradient(to right, #ff8c42, #ffa500); /* Gradiente laranja */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 0 0 8px 8px; /* Arredonda apenas as bordas inferiores */
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    transition: opacity 0.3s ease;
+    text-transform: uppercase; /* Deixa o texto em maiúsculas */
+}
+
+.bottomButton:hover {
+    opacity: 0.9;
+}

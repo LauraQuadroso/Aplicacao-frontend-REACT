@@ -1,0 +1,68 @@
+.navbar {
+    background-color: #fefefe;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: sans-serif;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .brand {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .pata {
+    color: orange;
+  }
+  
+  .match {
+    color: #222;
+  }
+  
+  .pawIcon {
+    width: 28px;
+    height: 28px;
+    margin-left: 8px;
+  }
+  
+  .navLinks {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .link:hover {
+    background-color: #eee;
+  }
+  
+  .loginBtn {
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+  
+  .loginBtn:hover {
+    background-color: #df5617;
+    color: #ffffff;
+  }
+  .registerBtn {
+    background-color: #ccc;
+    color: #333;
+    font-weight: bold;
+    border: none;
+  }
+  
